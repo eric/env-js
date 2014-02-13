@@ -140,7 +140,7 @@ __extend__(Node.prototype, {
         }
         if(!refChild){
             this.appendChild(newChild);
-            return this.newChild;
+            return newChild;
         }
 
         // test for exceptions
