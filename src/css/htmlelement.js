@@ -10,7 +10,7 @@
 var log = Envjs.logger();
 
 Envjs.once('tick', function(){
-   log = Envjs.logger('Envjs.HTML.HTMLElement').debug('available'); 
+   log = Envjs.logger('Envjs.HTML.Element').debug('available');
 });
 
 
@@ -21,7 +21,7 @@ Envjs.once('tick', function(){
  */
 var $css2properties = [{}];
 
-__extend__(HTMLElement.prototype, {
+__extend__(Element.prototype, {
     get style(){
         if ( !this.css2uuid ) {
             this.css2uuid = $css2properties.length;
@@ -53,7 +53,7 @@ var updateCss2Props = function(elem, values) {
 
 var origSetAttribute =  HTMLElement.prototype.setAttribute;
 
-HTMLElement.prototype.setAttribute = function(name, value) {
+Element.prototype.setAttribute = function(name, value) {
     //console.log("CSS set attribute: " + name + ", " + value);
     origSetAttribute.apply(this, arguments);
     if (name === "style") {
@@ -61,9 +61,9 @@ HTMLElement.prototype.setAttribute = function(name, value) {
     }
 };
 
-var origGetAttribute =  HTMLElement.prototype.getAttribute;
+var origGetAttribute =  Element.prototype.getAttribute;
 
-HTMLElement.prototype.getAttribute = function(name) {
+Element.prototype.getAttribute = function(name) {
     //console.log("CSS set attribute: " + name + ", " + value);
 	var style;
     if (name === "style") {
@@ -74,4 +74,4 @@ HTMLElement.prototype.getAttribute = function(name) {
 	}
 };
 
-}(/*Envjs.HTML.HTMLElement*/));
+}(/*Envjs.HTML.Element*/));
